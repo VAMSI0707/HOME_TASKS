@@ -1,3 +1,11 @@
+/*
+DESCRIPTION-
+Generally we know that interns are considered as employees, so we don't actually need a adapter pattern 
+as intern and employee are compatible in organisations like epam.But the code I wrote below was for 
+organisations that hire interns without employee benefits like salary,insurance,laptop etc.So, in such 
+cases intern and employee are incompatible.So,we need a adapter class tomake employee compatible with 
+intern.
+ */
 interface Employee{
     String getName();
     String getEmailId();
