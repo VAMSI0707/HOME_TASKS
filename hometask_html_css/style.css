@@ -2,6 +2,9 @@ body {
     font-family: sans-serif;
 }
 
+/*
+Styling the header region
+*/
 header {
     background-color: #060f48;
     display: flex;
@@ -32,6 +35,9 @@ header {
     margin: 0;
 }
 
+/*
+Styling the category selection and subscribe section
+*/
 .category-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -97,6 +103,9 @@ option {
     align-self: center;
 }
 
+/*
+Styling the news blogs region
+*/
 
 .news-item {
     width: 100%;
@@ -143,63 +152,12 @@ option {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+/*
+Styling the footer region
+*/
 footer {
     background-color: #060f48;
     text-align: center;
     color: white;
     margin: 10px 0px;
-}
-
-
-@media only screen and (max-width: 768px) {
-    .header-content {
-        background-color: white;
-        text-align: center;
-        width: 50%;
-        height: 50px;
-        margin: 20px auto;
-        box-sizing: border-box;
-        border: 1px solid rgb(249, 174, 12);
-        font-weight: bolder;
-    }
-
-    .category-container {
-        border-bottom: none;
-        height: fit-content;
-        grid-column-gap: 20px;
-    }
-
-    .category-item {
-        margin-top: 40px;
-        padding-left: 10px;
-    }
-
-    .allnews-headingitem {
-        font-size: 10px;
-        margin-top: 0px;
-        align-self: start;
-        justify-self: center;
-    }
-
-
-    .subscribe-item {
-        grid-column-start: 1;
-        margin-top: 10px;
-        margin-left: 10px;
-        margin-bottom: 20px;
-    }
-
-    .news-item {
-        flex-direction: column;
-        align-items: flex-start;
-        border-bottom: none;
-        padding-left: 10px;
-    }
-
-
-    .news-item img {
-        margin-top: 20px;
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
 }
