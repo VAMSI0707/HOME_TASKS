@@ -59,6 +59,9 @@ function basicOp(operation, value1, value2) {
         case '*':
             return value1 * value2;
         case '/':
+            if (value2==0) {
+                return "Division by zero not possible";
+            }
             return value1 / value2;
 
     }
