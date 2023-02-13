@@ -54,12 +54,13 @@ obj.getSecret() # returns 2
 
 */
 function createSecretHolder(secret) {
+    let _secret = secret;
     return {
-        setSecret: function () {
-            secret = arguments[0];
+        setSecret: function (s) {
+            _secret = s;
         },
         getSecret: function () {
-            return secret;
+            return _secret;
         }
     }
 }
