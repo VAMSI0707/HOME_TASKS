@@ -50,13 +50,7 @@ var i = partitionOn(isEven, items);
 function partitionOn(pred, items) {
     let truePredicate = items.filter(item => pred(item));
     let falsePredicate = items.filter(item => !pred(item));
-    let i = 0;
-    for (let item of falsePredicate) {
-        items[i++] = item;
-    }
-    for (let item of truePredicate) {
-        items[i++] = item;
-    }
+    items = [...truePredicate, ...falsePredicate];
     return falsePredicate.length;
 }
 
