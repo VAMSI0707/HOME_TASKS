@@ -2,6 +2,6 @@
 *.log
 *.docx
 *.pptx
-/node_modules
+node_modules/
 *.json
 *.conf.js
