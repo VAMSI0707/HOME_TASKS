@@ -18,6 +18,7 @@ function displayVideos(videos){
         videoLink.innerText = "Click here to watch";
         videoDetailsContainer.append(videoTitle, videoDescription, videoAuthor, releaseDate, videoLink);
         videoContainer.append(videoImg, videoDetailsContainer);
+        console.log(videoLink.innerText);
         totalVideoContainer.append(videoContainer);
     });
 }

@@ -10,7 +10,7 @@ function fetchYoutubeVideos(searchValue, token = '') {
         url += `&pageToken=${pageToken.nextPageToken}`;
         console.log(url);
     }
-
+    console.log(url);
     fetch(url)
         .then(response => response.json())
         .then(data => {
