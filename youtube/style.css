@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+body {
+    font-family: sans-serif;
+    font-weight: bolder;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    background-color: red;
+    padding: 10px;
+}
+
+#search-box {
+    float: left;
+    padding: 4px;
+}
+
+#search-button {
+    background-color: black;
+    color: rgb(206, 15, 15);
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: white;
+    color: red;
+}
+
+#total-video-container {
+    margin-top: 20px;
+}
+
+.video-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 25px;
+    border-bottom: 2px solid lightgray;
+}
+
+.video-container img {
+    width: 250px;
+    height: 250px;
+    margin-top: 10px;
+    margin-right: 30px;
+    margin-left: 10px;
+}
+
+.video-container div {
+    flex: 1;
+}
+
+.video-container p {
+    margin-bottom: 5px;
+}
+
+.video-container a:link,
+a:visited {
+    background-color: red;
+    color: white;
+    padding: 14px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.video-container a:hover,
+a:active {
+    background-color: black;
+}
+
+#pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#prev-button,
+#next-button {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#prev-button:hover,
+#next-button:hover {
+    background-color: black;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 641px) {
+    .video-container {
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: none;
+    }
+    .video-container div{
+        margin-top: 15px;
+        margin-left: 10px;
+    }
+    
+    
+}
