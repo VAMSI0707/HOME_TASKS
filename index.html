@@ -1,0 +1,35 @@
+<!--
+Use Babel transpiler to apply ECMAScript 2016+ features and make your application work in all modern browsers.
+Use Babel as a loaderUse style and url loaders. (css/Sass/less)Configure the bundler for development and production mode
+Configure Webpack-dev-server
+Implement Lazy loading: Probably Create button "Headlines" on the main page. Your app should load necessary code for rendering headlines data only after clicking on the button above. (You can use another any api to fetch data accordingly – Probably you could use created Popup)https://newsapi.org/v2/top-headlines?country=us&apiKey= 
+Make sure IE11 is fully supported as well. It’s purposely included in support list. I believe you understand why. (fetch is important)
+BONUS: Set up Babel to remove all console.log() in production mode.
+Use Babel transpiler to transpile typescript to javascript.
+
+
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lazy loading</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>
+        Generate news using the below button
+    </h1>
+    <div class="headlines-container">
+
+    </div>
+    <center><button id="headlines-button">
+            Load Headlines
+        </button>
+    </center>
+    <script src="index.js"></script>
+</body>
+
+</html>
