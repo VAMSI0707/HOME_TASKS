@@ -44,6 +44,8 @@ if(clArguments[0]==='--operation' && values.length>=2){
                 console.log("Division takes only two values for input and the second value should not be zero");
             }
             break;
+        default:
+            console.log("choose a valid operation");    
 
     }
 }
