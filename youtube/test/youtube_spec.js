@@ -1,137 +1,179 @@
-describe('fetchYoutubeVideos', () => {
-    let totalVideoContainer;
-    var fixture;
-    beforeEach(() => {
-        fixture = `<div class="search-container">
-        <form id="search-form">
-            <input type="text" id="search-box" placeholder="Search Youtube">
-            <input type="submit" value="search" id="search-button">
-        </form>
-    </div>
-    <div id="total-video-container">
-    </div>
-    <div id="pagination-container">
-        <button id="prev-button">Previous</button>
-        <button id="next-button">Next</button>
-    </div>`;
-        setFixtures(fixture);
+describe("fetchYoutubeVideos", function () {
+    let apiKey, searchValue, videosPerPage, pageToken, videos, response;
+    beforeAll(function () {
+        apiKey = "AIzaSyC9q4aTHdWSjdDb94tOeJ_7ecjrvVUm56A";
+        videosPerPage = 15;
+        searchValue = "javascript";
+        spyOn(window, 'displayVideos');
+        videos = [
+            {
+                "kind": "youtube#searchResult",
+                "etag": "-SIJb9BmiJLqvpESHRk37gBnUJs",
+                "id": {
+                    "kind": "youtube#video",
+                    "videoId": "hKB-YGF14SY"
+                },
+                "snippet": {
+                    "publishedAt": "2020-05-16T17:57:42Z",
+                    "channelId": "UCeVMnSShP_Iviwkknt83cww",
+                    "title": "JavaScript Tutorial In Hindi",
+                    "description": "00:00 – Video Introduction 01:10 – JavaScript Introduction 02:43 – Basics of JavaScript 04:55 – Coding First Line of JavaScript ...",
+                    "thumbnails": {
+                        "default": {
+                            "url": "https://i.ytimg.com/vi/hKB-YGF14SY/default.jpg",
+                            "width": 120,
+                            "height": 90
+                        },
+                        "medium": {
+                            "url": "https://i.ytimg.com/vi/hKB-YGF14SY/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                        },
+                        "high": {
+                            "url": "https://i.ytimg.com/vi/hKB-YGF14SY/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                        }
+                    },
+                    "channelTitle": "CodeWithHarry",
+                    "liveBroadcastContent": "none",
+                    "publishTime": "2020-05-16T17:57:42Z"
+                }
+            },];
+        response = { json: () => Promise.resolve({ items: videos }) };
+        spyOn(window, 'fetch').and.returnValue(Promise.resolve(response));
+
     });
-    it('should fetch videos', (done) => {
-        const searchValue = 'football';
-        const expectedVideoCount = 15;
-        console.log("hi");
-        expect($('#total-video-container')).toBeInDOM();
-        fetchYoutubeVideos(searchValue)
-            .then(() => {
-                expect(totalVideoContainer.childElementCount).toBe(expectedVideoCount);
-                done();
-            })
-            .catch((error) => {
-                done.fail(error);
-            })
+    it("should call displayVideos", async () => {
+        await fetchYoutubeVideos(searchValue, apiKey, videosPerPage);
+        expect(displayVideos).toHaveBeenCalled();
+    });
+    it("should call display videos with a specific parameter", async () => {
+        await fetchYoutubeVideos(searchValue, apiKey, videosPerPage);
+        expect(displayVideos).toHaveBeenCalledWith(videos);
+    });
+
+});
+describe('displayVideos', () => {
+    let videos, videoContainers, totalVideoContainer;
+    beforeAll(function () {
+        videos = [
+            {
+                "kind": "youtube#searchResult",
+                "etag": "-SIJb9BmiJLqvpESHRk37gBnUJs",
+                "id": {
+                    "kind": "youtube#video",
+                    "videoId": "hKB-YGF14SY"
+                },
+                "snippet": {
+                    "publishedAt": "2020-05-16T17:57:42Z",
+                    "channelId": "UCeVMnSShP_Iviwkknt83cww",
+                    "title": "JavaScript Tutorial In Hindi",
+                    "description": "00:00 – Video Introduction 01:10 – JavaScript Introduction 02:43 – Basics of JavaScript 04:55 – Coding First Line of JavaScript ...",
+                    "thumbnails": {
+                        "default": {
+                            "url": "https://i.ytimg.com/vi/hKB-YGF14SY/default.jpg",
+                            "width": 120,
+                            "height": 90
+                        },
+                        "medium": {
+                            "url": "https://i.ytimg.com/vi/hKB-YGF14SY/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                        },
+                        "high": {
+                            "url": "https://i.ytimg.com/vi/hKB-YGF14SY/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                        }
+                    },
+                    "channelTitle": "CodeWithHarry",
+                    "liveBroadcastContent": "none",
+                    "publishTime": "2020-05-16T17:57:42Z"
+                }
+            },
+            {
+                "kind": "youtube#searchResult",
+                "etag": "LaQLzL24l8145BcPmSLLOITuw8k",
+                "id": {
+                    "kind": "youtube#video",
+                    "videoId": "W6NZfCO5SIk"
+                },
+                "snippet": {
+                    "publishedAt": "2018-04-24T02:37:33Z",
+                    "channelId": "UCWv7vMbMWH4-V0ZXdmDpPBA",
+                    "title": "JavaScript Tutorial for Beginners: Learn JavaScript in 1 Hour",
+                    "description": "Watch this JavaScript tutorial for beginners to learn JavaScript basics in one hour. Want to master JavaScript? Get my complete ...",
+                    "thumbnails": {
+                        "default": {
+                            "url": "https://i.ytimg.com/vi/W6NZfCO5SIk/default.jpg",
+                            "width": 120,
+                            "height": 90
+                        },
+                        "medium": {
+                            "url": "https://i.ytimg.com/vi/W6NZfCO5SIk/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                        },
+                        "high": {
+                            "url": "https://i.ytimg.com/vi/W6NZfCO5SIk/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                        }
+                    },
+                    "channelTitle": "Programming with Mosh",
+                    "liveBroadcastContent": "none",
+                    "publishTime": "2018-04-24T02:37:33Z"
+                }
+            }];
+        totalVideoContainer = displayVideos(videos);
+        videoContainers = totalVideoContainer.querySelectorAll('.video-container');
+
+    });
+    it('should create element for each and every item of videos array', () => {
+        expect(videoContainers.length).toBe(videos.length);
+    });
+    it('should check the src attribute value of img element in video container', () => {
+        for (let i = 0; i < videos.length; i++) {
+            const video = videos[i];
+            const videoContainer = videoContainers[i]; 
+            expect(videoContainer.querySelector('img').src).toEqual(video.snippet.thumbnails.default.url);
+        }
+    });
+    it('should check the video title value of element in video container', () => {
+        for (let i = 0; i < videos.length; i++) {
+            const video = videos[i];
+            const videoContainer = videoContainers[i]; 
+            expect(videoContainer.querySelector('p.video-title').innerText).toEqual(video.snippet.title);
+        }
+    });
+    it('should check the video author value of element in video container', () => {
+        for (let i = 0; i < videos.length; i++) {
+            const video = videos[i];
+            const videoContainer = videoContainers[i]; 
+            expect(videoContainer.querySelector('p.video-author').innerText).toEqual(video.snippet.channelTitle);
+        }
+    });
+    it('should check the video description value of element in video container', () => {
+        for (let i = 0; i < videos.length; i++) {
+            const video = videos[i];
+            const videoContainer = videoContainers[i];
+            expect(videoContainer.querySelector('p.video-description').innerText).toEqual(video.snippet.description);
+        }
+    });
+    it('should check the release date value of element in video container', () => {
+        for (let i = 0; i < videos.length; i++) {
+            const video = videos[i];
+            const videoContainer = videoContainers[i];
+            expect(videoContainer.querySelector('p.release-date').innerText).toEqual(video.snippet.publishedAt.slice(0, 10));
+        }
+    });
+    it('should check the href and innerText attribute values of link element in video container', () => {
+        for (let i = 0; i < videos.length; i++) {
+            const video = videos[i];
+            const videoContainer = videoContainers[i];
+            expect(videoContainer.querySelector('a').href).toEqual(`https://www.youtube.com/watch?v=${video.id.videoId}`);
+            expect(videoContainer.querySelector('a').innerText).toEqual('Click here to watch');
+        }
     });
 });
-
-// describe('displayVideos', () => {
-//     let totalVideoContainer;
-//     beforeEach(() => {
-//         totalVideoContainer = document.createElement('div');
-//         totalVideoContainer.id = "total-video-container";
-//         document.body.appendChild(totalVideoContainer);
-
-//     });
-//     it('should create a container for each video', () => {
-//         const mockVideos = [{
-//             "kind": "youtube#searchResult",
-//             "etag": "nyciafbCbYSw0spuPzFvezLf848",
-//             "id": {
-//                 "kind": "youtube#video",
-//                 "videoId": "FLEY6riPilA"
-//             },
-//             "snippet": {
-//                 "publishedAt": "2023-02-23T11:13:39Z",
-//                 "channelId": "UCX7NrBIGUezEJxDK3vCZa7Q",
-//                 "title": "Unusual Moments in Football",
-//                 "description": "Follow us! • Instagram - https://instagram.com/score90 • TikTok - https://tiktok.com/@score90 Score 90 is a global football ...",
-//                 "thumbnails": {
-//                     "default": {
-//                         "url": "https://i.ytimg.com/vi/FLEY6riPilA/default.jpg",
-//                         "width": 120,
-//                         "height": 90
-//                     },
-//                     "medium": {
-//                         "url": "https://i.ytimg.com/vi/FLEY6riPilA/mqdefault.jpg",
-//                         "width": 320,
-//                         "height": 180
-//                     },
-//                     "high": {
-//                         "url": "https://i.ytimg.com/vi/FLEY6riPilA/hqdefault.jpg",
-//                         "width": 480,
-//                         "height": 360
-//                     }
-//                 },
-//                 "channelTitle": "Score 90",
-//                 "liveBroadcastContent": "none",
-//                 "publishTime": "2023-02-23T11:13:39Z"
-//             }
-//         },
-//         {
-//             "kind": "youtube#searchResult",
-//             "etag": "PcbAACXDiSscPDWKPAYFp86DQkQ",
-//             "id": {
-//                 "kind": "youtube#video",
-//                 "videoId": "MqfY-XO8YqA"
-//             },
-//             "snippet": {
-//                 "publishedAt": "2023-02-23T11:51:09Z",
-//                 "channelId": "UCHYhXiy8KYCuYgz3MvZrptQ",
-//                 "title": "Funny Soccer Football Vines 2023 ● Goals l Skills l Fails",
-//                 "description": "Funny Soccer Football Vines 2023 ○ Goals l Skills l Fails Funny,Soccer,Football,Vines,2023,Goals,Skills,Fials,Funny Football ...",
-//                 "thumbnails": {
-//                     "default": {
-//                         "url": "https://i.ytimg.com/vi/MqfY-XO8YqA/default.jpg",
-//                         "width": 120,
-//                         "height": 90
-//                     },
-//                     "medium": {
-//                         "url": "https://i.ytimg.com/vi/MqfY-XO8YqA/mqdefault.jpg",
-//                         "width": 320,
-//                         "height": 180
-//                     },
-//                     "high": {
-//                         "url": "https://i.ytimg.com/vi/MqfY-XO8YqA/hqdefault.jpg",
-//                         "width": 480,
-//                         "height": 360
-//                     }
-//                 },
-//                 "channelTitle": "Sim Mot",
-//                 "liveBroadcastContent": "none",
-//                 "publishTime": "2023-02-23T11:51:09Z"
-//             }
-//         }
-//         ];
-//         displayVideos(mockVideos);
-//         let videoConatiners = document.querySelectorAll('.video-container');
-//         expect(videoConatiners.length).toBe(2);
-//         const videoTitle1 = videoConatiners[0].querySelector('p');
-//         expect(videoTitle1.innerText).toBe(mockVideos[0].snippet.title);
-//         const videoTitle2 = videoConatiners[1].querySelector('p');
-//         expect(videoTitle2.innerText).toBe(mockVideos[1].snippet.title);
-//     });
-// });
-
-// describe("Calculator",function(){
-//     var calculator;
-//     beforeEach(function(){
-//         calculator = new Calculator();
-//     });
-
-//     it("Should add two numbers", function(){
-//         var result = calculator.add(4,5);
-//         expect(result).toBe(9);
-//     });
-//     it("should subtract two numbers",function(){
-//         var result=calculator.sub(9,5);
-//         expect(result).toBe(4);
-//     });
-// })
