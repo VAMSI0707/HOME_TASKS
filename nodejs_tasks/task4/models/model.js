@@ -1,6 +1,5 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
-//postgres://user:password@localhost:5432/database
-const sequelize = new Sequelize('');
+const sequelize = require('../data/sequelize');
 
 class User extends Model { }
 
@@ -32,6 +31,6 @@ User.init({
     modelName: 'User',
 });
 
-module.exports = User;
+module.exports = { User };
 
 

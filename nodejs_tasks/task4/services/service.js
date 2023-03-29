@@ -1,8 +1,11 @@
-const User = require('../models/dataaccess');
-
-
+const {User} = require('../models/model');
+const {Op}=require('sequelize');
 async function getUserById(id) {
-    return User.findByPk(id);
+    const user= await User.findByPk(id);
+    if(user && !user.isDeleted){
+        return user;
+    }
+    return null;
 }
 
 async function createUser(user) {
@@ -11,7 +14,7 @@ async function createUser(user) {
 
 async function updateUser(id, user) {
     const existingUser = await this.getUserById(id);
-    if (existingUser) {
+    if (existingUser && !existingUser.isDeleted) {
         return existingUser.update(user);
     }
     return null;
