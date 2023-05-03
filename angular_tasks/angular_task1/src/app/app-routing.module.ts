@@ -25,7 +25,6 @@ const routes: Routes = [
       import('./manage/manage.module').then((m) => m.ManageModule),
   },
 ];
-// loadChildren:()=> ActiveModule loadChildren:()=>DeletedModule
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

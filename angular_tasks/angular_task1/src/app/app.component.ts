@@ -14,5 +14,5 @@ export class AppComponent {
   public open(modal:any):void{
     this.modalService.open(modal);
   }
-  title = 'angular_hometask_1';
+  title = 'angular-task1';
 }
