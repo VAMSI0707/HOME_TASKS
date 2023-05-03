@@ -15,10 +15,6 @@ const routes: Routes = [
       },
     ],
   },
-  // {
-  //   path: ':id',
-  //   component: UserdetailComponent,
-  // },
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
