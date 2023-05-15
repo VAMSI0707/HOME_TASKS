@@ -1,0 +1,23 @@
+<div class="card card-body border-dark">
+  <p class="font-weight-bold mb-0">
+    {{ userData.firstName | userFullName : [userData.lastName] | titlecase }}
+  </p>
+  <small class="{{ userData.isDeleted ? 'text-danger' : 'text-success' }}"
+    >{{ userData.isDeleted | activeDeletedDesc }}
+  </small>
+  <p class="card-text row">
+    <span class="col">Login Id</span>
+    <span class="col">{{ userData.login }}</span>
+  </p>
+  <p class="card-text row">
+    <span class="col">First Name</span>
+    <span class="col">{{ userData.firstName }}</span>
+  </p>
+  <p class="card-text row">
+    <span class="col">Last Name</span>
+    <span class="col">{{ userData.lastName }}</span>
+  </p>
+  <p class="card-text row">
+    <span class="col">Age</span> <span class="col">{{ userData.age }}</span>
+  </p>
+</div>

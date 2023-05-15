@@ -1,0 +1,9 @@
+<div *ngFor="let user of users">
+  <app-user
+    [user]="user"
+    [isDeleted]="isDeleted"
+    [activateButton]="activateButton"
+    [deactivateButton]="deactivateButton"
+    [manageButton]="manageButton"
+  ></app-user>
+</div>
