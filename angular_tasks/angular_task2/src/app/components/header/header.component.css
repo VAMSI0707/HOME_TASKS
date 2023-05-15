@@ -1,0 +1,9 @@
+.nav-active {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.navbar {
+  border-bottom: 1.5px solid rgb(171, 170, 170);
+  margin-bottom: 20px;
+}

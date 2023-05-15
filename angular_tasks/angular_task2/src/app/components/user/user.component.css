@@ -1,0 +1,15 @@
+.user-div {
+  padding: 25px;
+  display: grid;
+}
+
+.activate-btn,
+.deactivate-btn,
+.manage-btn {
+  justify-self: flex-end;
+}
+
+.manage-btn-div {
+  display: flex;
+  justify-content: space-between;
+}
