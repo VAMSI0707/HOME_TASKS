@@ -1,0 +1,19 @@
+<!-- user.isDeleted ===  -->
+<div
+  class="user-div container mb-3"
+  *ngIf="isDeleted === user.isDeleted || manageButton"
+  [style]="borderColor"
+
+>
+  <p>{{ user.firstName }} {{ user.lastName }}</p>
+  <button class="btn btn-success activate-btn" *ngIf="activateButton">
+    Activate
+  </button>
+  <button class="btn btn-danger deactivate-btn" *ngIf="deactivateButton">
+    Deactivate
+  </button>
+  <button *ngIf="manageButton" (click)="detail()" class="btn btn-primary manage-btn">
+    Manage
+  </button>
+</div>
+
